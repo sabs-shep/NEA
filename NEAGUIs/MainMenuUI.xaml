@@ -1,0 +1,38 @@
+<local:UI x:Class="NEAGUIs.MainMenuUI"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:local="clr-namespace:NEAGUIs"
+          Title="Main Menu"
+          Height="600"
+          Width="900"
+          Background="{DynamicResource WindowBackground}">
+
+    <Viewbox Stretch="Uniform">
+        <Grid Width="900" Height="600" Background="{DynamicResource WindowBackground}" Margin="10">
+
+            <Border Background="{DynamicResource PrimaryColor}"
+                    CornerRadius="12"
+                    Padding="20"
+                    Margin="20">
+
+                <StackPanel>
+
+                    <TextBlock Text="Main Menu"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="Black"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 20"/>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="MenuList" />
+                    </ScrollViewer>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+    </Viewbox>
+
+</local:UI>

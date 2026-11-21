@@ -1,0 +1,64 @@
+<local:UI x:Class="NEAGUIs.LoginUI"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:local="clr-namespace:NEAGUIs"
+          Title="Login"
+          Height="420"
+          Width="350"
+          Background="{DynamicResource WindowBackground}">
+
+    <Viewbox Stretch="Uniform">
+        <Grid Width="350" Height="420" Background="{DynamicResource WindowBackground}" Margin="10">
+
+            <Border Background="{DynamicResource PrimaryColor}"
+                    CornerRadius="12"
+                    Padding="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                <StackPanel Width="260">
+
+                    <TextBlock x:Name="TitleText"
+                               Text="LOGIN"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Foreground="Black"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 20"/>
+
+                    <TextBlock Text="Username" Foreground="Black" Margin="0 0 0 5"/>
+                    <TextBox x:Name="UsernameBox"
+                             Height="32"
+                             Background="White"
+                             Foreground="Black"
+                             BorderBrush="{DynamicResource AccentColor}"
+                             BorderThickness="1"
+                             Padding="5"
+                             Margin="0 0 0 15"/>
+
+                    <TextBlock Text="Password" Foreground="Black" Margin="0 0 0 5"/>
+                    <PasswordBox x:Name="PasswordBox"
+                                 Height="32"
+                                 Background="White"
+                                 Foreground="Black"
+                                 BorderBrush="{DynamicResource AccentColor}"
+                                 BorderThickness="1"
+                                 Padding="5"
+                                 Margin="0 0 0 20"/>
+
+                    <Button x:Name="SubmitButton"
+                            Content="Login"
+                            Height="40"
+                            Background="{DynamicResource AccentColor}"
+                            Foreground="Black"
+                            FontWeight="Bold"
+                            Click="SubmitButton_Click"/>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+    </Viewbox>
+
+</local:UI>

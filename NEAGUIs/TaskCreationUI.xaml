@@ -1,0 +1,155 @@
+<local:UI x:Class="NEAGUIs.TaskCreationUI"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:local="clr-namespace:NEAGUIs"
+          Title="Create Task" Height="360" Width="380">
+
+    <Viewbox Stretch="Uniform">
+        <StackPanel>
+
+            <Grid Width="380" Height="360" Margin="10">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- title -->
+                    <RowDefinition Height="*"/>
+                    <!-- description -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- priority -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- due date -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- recurrence -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- tags -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- complete + buttons -->
+                </Grid.RowDefinitions>
+
+                <!-- TITLE -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Text="Title:" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TitleBox"
+                             Margin="10,0,0,0"
+                             Width="260"/>
+                    <TextBlock x:Name="TitleError"
+                               Text="*"
+                               Foreground="Red"
+                               FontWeight="Bold"
+                               Visibility="Collapsed"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- DESCRIPTION -->
+                <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                    <TextBlock Text="Description:"/>
+                    <TextBox x:Name="DescriptionBox"
+                             Margin="0,5,0,0"
+                             Width="340"
+                             Height="100"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"/>
+                </StackPanel>
+
+                <!-- PRIORITY (pretty UI, enum Tag) -->
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Priority:" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="PriorityBox"
+                              Margin="10,0,0,0"
+                              Width="150">
+                        <ComboBoxItem Content="Low"    Tag="LOW"/>
+                        <ComboBoxItem Content="Normal" Tag="NORMAL" IsSelected="True"/>
+                        <ComboBoxItem Content="High"   Tag="HIGH"/>
+                        <ComboBoxItem Content="Urgent" Tag="URGENT"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- DUE DATE -->
+                <StackPanel Grid.Row="3"
+                            Orientation="Horizontal"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Due Date:" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="DueDatePicker"
+                                Margin="10,0,0,0"
+                                Width="150"/>
+                </StackPanel>
+
+                <!-- RECURRENCE (pretty UI, enum Tag) -->
+                <StackPanel Grid.Row="4"
+                            Orientation="Horizontal"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Recurrence:" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="RecurrenceBox"
+                              Margin="10,0,0,0"
+                              Width="150">
+                        <ComboBoxItem Content="None"    Tag="NONE" IsSelected="True"/>
+                        <ComboBoxItem Content="Daily"   Tag="DAILY"/>
+                        <ComboBoxItem Content="Weekly"  Tag="WEEKLY"/>
+                        <ComboBoxItem Content="Monthly" Tag="MONTHLY"/>
+                        <ComboBoxItem Content="Yearly"  Tag="YEARLY"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Interval:"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+
+                    <TextBox x:Name="RecurrenceIntervalBox"
+                             Margin="5,0,0,0"
+                             Width="40"
+                             Text="1"/>
+                </StackPanel>
+
+                <!-- TAGS -->
+                <StackPanel Grid.Row="5"
+                            Margin="0,10,0,0">
+                    <TextBlock Text="Tags (comma separated, optional):"/>
+                    <TextBox x:Name="TagsBox"
+                             Margin="0,5,0,0"
+                             Width="220"/>
+                </StackPanel>
+
+                <!-- COMPLETE + BUTTONS -->
+                <Grid Grid.Row="6"
+                      Margin="0,15,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox x:Name="CompleteBox"
+                              Content="Mark as complete"
+                              VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Button Content="Cancel"
+                                Width="80"
+                                Margin="0,0,10,0"
+                                Click="CancelButton_Click"/>
+                        <Button Content="Submit"
+                                Width="80"
+                                Click="SubmitButton_Click"/>
+                    </StackPanel>
+
+                    <Button x:Name="DeleteButton"
+                            Grid.Column="2"
+                            Content="Delete"
+                            Width="80"
+                            Margin="10,0,0,0"
+                            Visibility="Collapsed"
+                            Click="DeleteButton_Click"/>
+                </Grid>
+
+            </Grid>
+
+        </StackPanel>
+    </Viewbox>
+
+</local:UI>

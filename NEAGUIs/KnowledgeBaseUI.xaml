@@ -1,0 +1,151 @@
+<local:UI x:Class="NEAGUIs.KnowledgeBaseUI"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:local="clr-namespace:NEAGUIs"
+          Title="Knowledge Base"
+          Width="900"
+          Height="600"
+          Background="{DynamicResource WindowBackground}">
+
+    <local:UI.Resources>
+
+        <!-- LISTBOX SELECTION FIX -->
+        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                         Color="{Binding Color, Source={StaticResource AccentColor}}"/>
+
+        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                         Color="{Binding Color, Source={StaticResource AccentColor}}"/>
+
+        <!-- ALL TEXT MUST BE BLACK -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- GROUPBOX: BORDER = PRIMARY, HEADER TEXT = BLACK -->
+        <Style TargetType="GroupBox">
+            <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Foreground="Black"
+                                   Background="{DynamicResource WindowBackground}"
+                                   Padding="2"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </local:UI.Resources>
+
+    <!-- VIEWBOX FOR SCALING -->
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Grid Width="900" Height="600" Background="{DynamicResource WindowBackground}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <!-- NEW -->
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- SEARCH BAR -->
+            <DockPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="5">
+                <TextBox x:Name="SearchBox"
+                         Width="300"
+                         Margin="0,0,5,0"
+                         VerticalAlignment="Center"
+                         KeyDown="SearchBox_KeyDown"/>
+
+                <Button Content="Search"
+                        Click="SearchButton_Click"
+                        Width="80"
+                        VerticalAlignment="Center"
+                        Background="{DynamicResource AccentColor}"
+                        Foreground="White"/>
+            </DockPanel>
+
+            <!-- TYPES -->
+            <GroupBox Header="Types"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Margin="5">
+                <ScrollViewer Background="{DynamicResource AccentColor}">
+                    <ListBox x:Name="TypeList"
+                             SelectionChanged="TypeList_SelectionChanged"/>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- ENTRIES -->
+            <GroupBox Header="Entries"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="5">
+                <ScrollViewer Background="{DynamicResource AccentColor}"
+                              VerticalScrollBarVisibility="Auto">
+                    <ListBox x:Name="EntryList"
+                             DisplayMemberPath="Label"
+                             SelectionChanged="EntryList_SelectionChanged"/>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- DETAILS -->
+            <GroupBox Header="Details"
+                      Grid.Row="1"
+                      Grid.Column="2"
+                      Margin="5">
+                <ScrollViewer Background="{DynamicResource AccentColor}"
+                              VerticalScrollBarVisibility="Auto">
+                    <TextBox x:Name="DetailBox"
+                             IsReadOnly="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto"
+                             FontFamily="Consolas"
+                             Margin="5"/>
+                </ScrollViewer>
+            </GroupBox>
+
+            <!-- ADD TO CONTEXT BUTTON -->
+            <StackPanel Grid.Row="2"
+                        Grid.ColumnSpan="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="10">
+
+                <Button x:Name="AddToContextButton"
+                        Content="Add to Context"
+                        Width="150"
+                        Margin="5"
+                        Background="{DynamicResource PrimaryColor}"
+                        Foreground="Black"
+                        Visibility="Collapsed"
+                        Click="AddToContext_Click"/>
+            </StackPanel>
+
+        </Grid>
+    </Viewbox>
+</local:UI>
